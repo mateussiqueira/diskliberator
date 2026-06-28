@@ -1,0 +1,52 @@
+name: Build Release
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Build DiskLiberator
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Install XcodeGen
+        run: |
+          if ! which xcodegen &>/dev/null; then
+            brew install xcodegen
+          fi
+
+      - name: Generate Project
+        run: xcodegen generate --project .
+
+      - name: Build Release
+        run: |
+          xcodebuild -project DiskLiberator.xcodeproj \
+            -scheme DiskLiberator \
+            -configuration Release \
+            -derivedDataPath /tmp/DL-Build \
+            build
+
+      - name: Package DMG
+        run: |
+          hdiutil create -volname "DiskLiberator" \
+            -srcfolder "/tmp/DL-Build/Build/Products/Release/DiskLiberator.app" \
+            -ov -format UDZO \
+            /tmp/DiskLiberator-$(date +%Y%m%d).dmg
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DiskLiberator-Release
+          path: /tmp/DiskLiberator-*.dmg
+          compression-level: 0

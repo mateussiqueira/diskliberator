@@ -4,10 +4,12 @@
 xcuserdata/
 DerivedData/
 .build/
+*.xcodeproj
 
 # macOS
 .DS_Store
 *.dmg
+*.app
 
 # Build
 /tmp/
@@ -20,3 +22,6 @@ DerivedData/
 
 # Logs
 *.log
+
+# Generated
+Sources/DiskLiberator/GeneratedInfo.plist
