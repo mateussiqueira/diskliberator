@@ -25,6 +25,9 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.diskliberator.app
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ENABLE_HARDENED_RUNTIME: YES
+    resources:
+      - path: Sources/DiskLiberator/pt-BR.lproj
+        type: folder
     info:
       path: Sources/DiskLiberator/GeneratedInfo.plist
       properties:

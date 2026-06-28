@@ -1,0 +1,63 @@
+"Dashboard" = "Painel";
+"Memory" = "Memória";
+"Scanner" = "Scanner";
+"Migrate" = "Migrar";
+"Clean Up" = "Limpeza";
+"Apps" = "Apps";
+"Browser" = "Navegador";
+"Startup" = "Inicialização";
+"Backups" = "Backups";
+"Disk Map" = "Mapa";
+"Settings" = "Config";
+
+"Smart Scan" = "Varredura Inteligente";
+"Scan Home" = "Escaneiar Home";
+"Scan Caches" = "Escaneiar Caches";
+"Free Memory" = "Liberar RAM";
+"Migrate All" = "Migrar Tudo";
+"Deep Scan" = "Varredura Profunda";
+
+"Cache Cleanup" = "Limpeza de Cache";
+"System Junk" = "Lixo do Sistema";
+"Duplicates" = "Duplicatas";
+"App Uninstaller" = "Desinstalador";
+"File Migration" = "Migração de Arquivos";
+"Disk Scanner" = "Scanner de Disco";
+"Memory & Performance" = "Memória & Desempenho";
+"Backups & Restore" = "Backups & Restaurar";
+"Browser Privacy" = "Privacidade Navegador";
+"Startup Items" = "Itens de Inicialização";
+
+"reclaimable" = "recuperável";
+"Scan" = "Escanear";
+"Clean" = "Limpar";
+"Refresh" = "Atualizar";
+"Reset" = "Redefinir";
+
+"Total capacity" = "Capacidade total";
+"Used space" = "Espaço usado";
+"Free space" = "Espaço livre";
+"Physical Memory" = "Memória Física";
+"Used Memory" = "Memória Usada";
+"Free Memory" = "Memória Livre";
+"Wired" = "Alocada";
+"Compressed" = "Comprimida";
+
+"External Drives" = "Unidades Externas";
+"Quick Actions" = "Ações Rápidas";
+"Activity" = "Atividade";
+"No scan results" = "Nenhum resultado";
+"No cache data" = "Nenhum cache";
+"No junk data" = "Nenhum lixo";
+"No backups yet" = "Nenhum backup ainda";
+"No apps scanned" = "Nenhum app escaneado";
+"No browser data" = "Nenhum dado de navegador";
+"No startup items" = "Nenhum item de inicialização";
+
+"Backups are created automatically before cleanup operations" = "Backups são criados automaticamente antes de operações de limpeza";
+"Enter a path and click Scan" = "Digite um caminho e clique em Escanear";
+"Click Scan to analyze cache sizes" = "Clique em Escanear para analisar caches";
+
+"Free up space by moving files to external storage" = "Libere espaço movendo arquivos para armazenamento externo";
+"Liberate your disk" = "Liberte seu disco";
+"The ultimate Mac cleaner — free, native, powerful" = "O limpador de Mac definitivo — grátis, nativo, poderoso";
