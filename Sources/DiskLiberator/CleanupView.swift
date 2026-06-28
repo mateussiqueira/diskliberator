@@ -108,8 +108,8 @@ struct CleanupView: View {
                                 Toggle(cat.name, isOn: Binding(get: { vm.junkCategories[i].selected }, set: { vm.junkCategories[i].selected = $0 }))
                                     .toggleStyle(.checkbox).font(.system(size: 12)).foregroundStyle(ColorToken.primary)
                                 Spacer()
-                                Text(ByteCountFormatter.short(cat.scan())).font(.system(size: 11, design: .monospaced))
-                                    .foregroundStyle(cat.scan() > 500_000_000 ? ColorToken.red : cat.scan() > 50_000_000 ? ColorToken.orange : ColorToken.secondary)
+                                Text(cat.formattedSize).font(.system(size: 11, design: .monospaced))
+                                    .foregroundStyle(cat.size > 500_000_000 ? ColorToken.red : cat.size > 50_000_000 ? ColorToken.orange : ColorToken.secondary)
                             }
                             .padding(.horizontal, 16).padding(.vertical, 6)
                             .background(RoundedRectangle(cornerRadius: 6).fill(ColorToken.card))

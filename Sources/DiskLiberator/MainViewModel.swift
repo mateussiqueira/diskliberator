@@ -18,7 +18,7 @@ final class MainViewModel: ObservableObject {
     @Published var cacheResults: [CacheCleanupService.Result] = []
 
     // Junk
-    @Published var junkCategories: [SystemJunkCategory] = []; @Published var isJunkScanning = false; @Published var junkResults: [CacheCleanupService.Result] = []
+    @Published var junkCategories: [SystemJunkService.JunkCategory] = []; @Published var isJunkScanning = false; @Published var junkResults: [CacheCleanupService.Result] = []
 
     // Duplicates
     @Published var duplicateGroups: [DuplicateGroup] = []; @Published var isDupScanning = false; @Published var dupPaths = "~"
@@ -140,7 +140,7 @@ final class MainViewModel: ObservableObject {
         isJunkScanning = true
         Task.detached(priority: .userInitiated) { [weak self] in
             let cats = SystemJunkService.shared.scan()
-            let total = cats.reduce(0) { $0 + $1.scan() }
+            let total = cats.reduce(0) { $0 + $1.size }
             await MainActor.run { self?.junkCategories = cats; self?.smartWaste = total; self?.isJunkScanning = false }
         }
     }
@@ -150,7 +150,7 @@ final class MainViewModel: ObservableObject {
         Task.detached(priority: .utility) { [weak self] in
             var rs: [CacheCleanupService.Result] = []
             for cat in selected {
-                let (freed, err) = cat.clean(); BackupService.shared.backup(path: cat.name)
+                let (freed, err) = SystemJunkService.shared.clean(cat)
                 rs.append(.init(name: cat.name, freed: freed, error: err, success: err == nil))
                 await MainActor.run { self?.log.append("Junk: \(err == nil ? "✓" : "✗") \(cat.name): \(ByteCountFormatter.short(freed))") }
             }
@@ -183,7 +183,7 @@ final class MainViewModel: ObservableObject {
             let junk = SystemJunkService.shared.scan()
             var rs: [CacheCleanupService.Result] = []
             for cat in caches where cat.selected { let r = CacheCleanupService.shared.clean(cat); rs.append(r); BackupService.shared.backup(path: cat.name) }
-            for cat in junk where cat.selected { let (f, e) = cat.clean(); rs.append(.init(name: cat.name, freed: f, error: e, success: e == nil)); BackupService.shared.backup(path: cat.name) }
+            for cat in junk where cat.selected { let (f, e) = SystemJunkService.shared.clean(cat); rs.append(.init(name: cat.name, freed: f, error: e, success: e == nil)) }
             let total = rs.reduce(0) { $0 + $1.freed }
             await MainActor.run {
                 self?.caches = caches; self?.junkCategories = junk; self?.cacheResults = rs

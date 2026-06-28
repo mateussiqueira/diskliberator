@@ -100,16 +100,6 @@ struct CacheCategory: Identifiable {
     ]
 }
 
-// MARK: - System Junk
-struct SystemJunkCategory: Identifiable {
-    let id = UUID()
-    let name: String
-    let icon: String
-    let scan: () -> Int64  // returns bytes that can be cleaned
-    let clean: () -> (Int64, String?)  // returns (freed, error)
-    var selected = true
-}
-
 // MARK: - Duplicate File
 struct DuplicateGroup: Identifiable {
     let id = UUID()
